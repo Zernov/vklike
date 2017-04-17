@@ -1,6 +1,9 @@
 import vk
 import operator
+import sys
+from sys import argv
 from time import sleep
+
 
 def getTop(id, count):
     session = vk.Session()
@@ -33,6 +36,14 @@ def printDict(dict):
     for record in dict:
         print(record + " (" + str(dict[record]) + ")")
 
-top = getTop(-58219172,10)
+page = 1
+top = 5
+
+if len(argv) > 1:
+    page = int(argv[1])
+if len(argv) > 2:
+    top = int(argv[2])
+
+top = getTop(page,top)
 
 printDict(top)
